@@ -9,40 +9,48 @@
   <h1>Villains by Deepika Vusarthi</h1>
 
   <form>
-    <!-- 2a: secret string (password) -->
+    <!-- Secret string -->
     <label for="secret_villain">Funny Man</label>
     <input type="password" id="secret_villain" name="secret_villain" value="Joker">
     <br><br>
 
-    <!-- 2b: guess input (text) -->
+    <!-- Guess input -->
     <label for="villain_guess">Guess the villain</label>
     <input type="text" id="villain_guess" name="villain_guess">
     <br><br>
 
-    <!-- 3: button -->
+    <!-- Button -->
     <input type="button" value="Check the guess" onclick="checkVillain()">
   </form>
 
   <br>
 
-  <!-- 4: results element -->
+  <!-- Results -->
   <p id="results">Caught: 0 | Got Away: 0</p>
 
-  <!-- 5: script -->
+  <hr>
+
+  <!-- Part 4: Tree Images -->
+  <h2>Tree Viewer</h2>
+
+  <div>
+    <img id="treeImage"
+         src="pine.jpg"
+         width="150"
+         height="150"
+         onclick="updatePic()">
+  </div>
+
+  <!-- Script -->
   <script>
-    // 6: global variables
+    // Villain game variables
     let caught = 0;
     let gotAway = 0;
 
-    // 7: function
     function checkVillain() {
-      // 7a: get secret value
       let secret = document.getElementById("secret_villain").value;
-
-      // 7b: get guess value
       let guess = document.getElementById("villain_guess").value;
 
-      // 7c: compare and update counts
       if (secret === guess) {
         caught = caught + 1;
         alert("You caught them");
@@ -51,9 +59,32 @@
         alert("Maybe next time");
       }
 
-      // 7d: update innerHTML with counts
       document.getElementById("results").innerHTML =
         "Caught: " + caught + " | Got Away: " + gotAway;
+    }
+
+    // Part 4: Image switching
+    let usePic = 1;
+
+    function updatePic() {
+      let img = document.getElementById("treeImage");
+
+      switch(usePic) {
+        case 1:
+          img.src = "pine.jpg";
+          usePic = 2;
+          break;
+
+        case 2:
+          img.src = "maple.jpg";
+          usePic = 3;
+          break;
+
+        case 3:
+          img.src = "oak.jpg";
+          usePic = 1; // wrap back to first
+          break;
+      }
     }
   </script>
 
