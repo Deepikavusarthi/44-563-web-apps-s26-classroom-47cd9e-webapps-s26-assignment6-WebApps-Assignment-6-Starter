@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deepika Vusarthi tax table computation</title>
+</head>
+<body>
+
+<h2>Deepika Vusarthi tax table computation</h2>
+
+<form>
+    <!-- Income -->
+    <label for="income">Enter income</label>
+    <input type="number" id="income" value="5000">
+    <br><br>
+
+    <!-- Base Rate -->
+    <label for="baseRate">Enter the base tax rate</label>
+    <input type="number" id="baseRate" value="0.05" step="0.01">
+    <br><br>
+
+    <!-- Cutoff -->
+    <label for="cutoff">Enter the cut off</label>
+    <input type="number" id="cutoff" value="7500">
+    <br><br>
+
+    <!-- Extended Rate -->
+    <label for="extRate">Enter the extended rate</label>
+    <input type="number" id="extRate" value="0.15" step="0.01">
+    <br><br>
+
+    <!-- Button -->
+    <input type="button" value="Show tax table" onclick="doTax()">
+</form>
+
+<br>
+
+<!-- Results -->
+<p id="results">Taxes are:</p>
+
+<script>
+function doTax() {
+
+    // Get values from inputs
+    let income = Number(document.getElementById("income").value);
+    let cutoff = Number(document.getElementById("cutoff").value);
+    let baseRate = Number(document.getElementById("baseRate").value);
+    let extRate = Number(document.getElementById("extRate").value);
+
+    // Output string
+    let taxTable = "";
+
+    // Loop 5 times: income to 5 * income
+    for (let i = 1; i <= 5; i++) {
+
+        let incomeLevel = i * income;
+        let tax = 0;
+
+        // Tax calculation
+        if (incomeLevel <= cutoff) {
+            tax = incomeLevel * baseRate;
+        } else {
+            tax = (cutoff * baseRate) + ((incomeLevel - cutoff) * extRate);
+        }
+
+        // Append result
+        taxTable += "incomeLevel " + incomeLevel + " is " + tax + "; ";
+    }
+
+    // Display results
+    document.getElementById("results").innerHTML =
+        "Taxes are: " + taxTable;
+}
+</script>
+
+</body>
+</html>
