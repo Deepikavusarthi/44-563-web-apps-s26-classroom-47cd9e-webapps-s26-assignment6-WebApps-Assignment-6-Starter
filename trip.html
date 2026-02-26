@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Deepika Vusarthi travel planner</title>
+</head>
+
+<body>
+
+  <h2>Deepika Vusarthi travel planner</h2>
+
+  <!-- Part 7: Checkboxes -->
+  <form>
+    <label>
+      <input type="checkbox" id="caribbean" value="True">
+      Caribbean
+    </label>
+    <br>
+
+    <label>
+      <input type="checkbox" id="mediterranean" value="True">
+      Mediterranean
+    </label>
+    <br>
+
+    <label>
+      <input type="checkbox" id="baltic" value="False">
+      Baltic
+    </label>
+    <br><br>
+
+    <input type="button" value="Cruise Choices" onclick="choices()">
+  </form>
+
+  <br>
+
+  <!-- Results -->
+  <p id="results">Your trip choices will appear here.</p>
+
+  <script>
+    // Step 8: global object
+    let my_trip = {};
+
+    function choices() {
+      // 9a: reset to empty object
+      my_trip = {};
+
+      // 9b: set properties based on whether each box is checked
+      my_trip.cari = document.getElementById("caribbean").checked;
+      my_trip.medi = document.getElementById("mediterranean").checked;
+      my_trip.balt = document.getElementById("baltic").checked;
+
+      // 9c: display the object
+      document.getElementById("results").innerHTML = JSON.stringify(my_trip);
+    }
+  </script>
+
+</body>
+</html>
