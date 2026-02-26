@@ -14,22 +14,34 @@
     <label>
       <input type="checkbox" id="caribbean" value="True">
       Caribbean
-    </label>
-    <br>
+    </label><br>
 
     <label>
       <input type="checkbox" id="mediterranean" value="True">
       Mediterranean
-    </label>
-    <br>
+    </label><br>
 
     <label>
       <input type="checkbox" id="baltic" value="False">
       Baltic
-    </label>
-    <br><br>
+    </label><br><br>
 
     <input type="button" value="Cruise Choices" onclick="choices()">
+  </form>
+
+  <br>
+
+  <!-- Part 8: Start/End city form -->
+  <form>
+    <label for="startCity">Enter starting city</label>
+    <input type="text" id="startCity" value="Athens">
+    <br><br>
+
+    <label for="endCity">Enter ending city</label>
+    <input type="text" id="endCity">
+    <br><br>
+
+    <input type="button" value="Update the trip" onclick="updateTrip()">
   </form>
 
   <br>
@@ -38,19 +50,28 @@
   <p id="results">Your trip choices will appear here.</p>
 
   <script>
-    // Step 8: global object
+    // Part 7/8 global object
     let my_trip = {};
 
+    // Part 7
     function choices() {
-      // 9a: reset to empty object
       my_trip = {};
 
-      // 9b: set properties based on whether each box is checked
       my_trip.cari = document.getElementById("caribbean").checked;
       my_trip.medi = document.getElementById("mediterranean").checked;
       my_trip.balt = document.getElementById("baltic").checked;
 
-      // 9c: display the object
+      document.getElementById("results").innerHTML = JSON.stringify(my_trip);
+    }
+
+    // Part 8
+    function updateTrip() {
+      let start = document.getElementById("startCity").value;
+      let end = document.getElementById("endCity").value;
+
+      my_trip["startCity"] = start;
+      my_trip["endCity"] = end;
+
       document.getElementById("results").innerHTML = JSON.stringify(my_trip);
     }
   </script>
